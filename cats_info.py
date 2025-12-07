@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from typing import List, Dict
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -39,7 +38,7 @@ def get_cats_info(path: str) -> List[Dict[str, str]]:
                 if len(parts) != 3:
                     logger.warning("Skipping malformed line %d: %r", lineno, line)
                     continue
-                cat_id, name, age = (part.strip() for part in parts)
+                cat_id, name, age = [p.strip() for p in parts]
                 cats.append({"id": cat_id, "name": name, "age": age})
     except OSError as exc:
         logger.error("Error reading file %s: %s", path, exc)
@@ -49,7 +48,8 @@ def get_cats_info(path: str) -> List[Dict[str, str]]:
 
 
 if __name__ == "__main__":
-    # Quick CLI for manual testing
+    # Configure logging for CLI usage; callers can configure logging themselves.
+    logging.basicConfig(level=logging.INFO)
     import sys
     if len(sys.argv) < 2:
         print("Usage: python cats_info.py <path_to_cats_file>")
