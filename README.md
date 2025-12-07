@@ -1,4 +1,4 @@
-```markdown
+
 # Homework: Working with Files and a Modular System
 
 This repository contains implementations for four tasks in Python:
