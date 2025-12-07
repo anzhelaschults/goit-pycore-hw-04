@@ -2,7 +2,6 @@ import logging
 from pathlib import Path
 from typing import Tuple
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -57,7 +56,8 @@ def total_salary(path: str) -> Tuple[float, float]:
 
 
 if __name__ == "__main__":
-    # Basic CLI for quick manual testing
+    # Configure logging for CLI usage; library importers can configure logging themselves.
+    logging.basicConfig(level=logging.INFO)
     import sys
 
     if len(sys.argv) < 2:
